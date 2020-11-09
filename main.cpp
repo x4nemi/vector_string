@@ -20,11 +20,11 @@ int main(){
         cout << "8. Eliminar" << "\t";
         cout << "9. Eliminar Ultimo" << endl;
         cout << "0. Salir" << endl << "Opcion: ";
-        cin >> op;
+        cin >> op; cin.ignore();
 
         if(op == 0) break;
 
-        cout << endl; //cin.ignore();
+        cout << endl; 
 
         switch(op){
         case 1:
@@ -32,7 +32,7 @@ int main(){
             string cadena;
 
             cout << "Cadena a agregar: ";
-            cin >> cadena;
+            getline(cin, cadena); 
 
             cadenas.push_back(cadena);
         }
@@ -45,11 +45,11 @@ int main(){
             cout << left;
             cout << setw(10) << "Posicion";
             for(size_t i = 0; i < cadenas.size(); i++){
-                cout << setw(10) << i;
+                cout << setw(15) << i;
             }
-            cout << setw(10) << "\nValores ";
+            cout << setw(10) << "\nValores";
             for(size_t i = 0; i < cadenas.size(); i++){
-                cout << setw(10) << cadenas[i];
+                cout << setw(15) << cadenas[i];
             }
             break;
         case 3:
@@ -58,9 +58,9 @@ int main(){
             string cadena;
 
             cout << "Tamaño: ";
-            cin >> n;
+            cin >> n; cin.ignore();
             cout << "cadena: ";
-            cin >> cadena;
+            getline(cin, cadena); 
 
             cadenas = vector<string>(n, cadena);
         }
@@ -80,9 +80,12 @@ int main(){
             cout << "Ultimo agregado: " << cadenas.back();
             break;
         case 6:
-            sort(cadenas.begin(), cadenas.end());
-            //sort(cadenas.begin(), cadenas.end(), greater<string>());
-            cout << "Ordenado";
+            bool modo;
+            cout << "Ascendente(0) o Descendente(1)? ";
+            cin >> modo;
+            if(!modo) sort(cadenas.begin(), cadenas.end());  
+            else sort(cadenas.begin(), cadenas.end(), greater<string>());
+            cout << "Se ha ordenado...";
             break;
         case 7:
         {
